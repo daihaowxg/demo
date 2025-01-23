@@ -15,13 +15,18 @@ public class LongEventMain1 {
         // 启动 Disruptor
         disruptor.start();
 
+        // 这里使用了最基本的发布事件的方式
         RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
         for (long i = 0; true; i++) {
+            // 1. 申请下一个序列号
             long sequence = ringBuffer.next();
             try {
+                // 2. 获取该序列号对应的事件对象
                 LongEvent event = ringBuffer.get(sequence);
+                // 3. 设置事件的值
                 event.set(i);
             } finally {
+                // 4. 发布事件
                 ringBuffer.publish(sequence);
             }
             Thread.sleep(1000);
