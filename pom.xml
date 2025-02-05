@@ -12,6 +12,7 @@
     <modules>
         <module>base</module>
         <module>disruptor</module>
+        <module>cdmp</module>
     </modules>
 
     <properties>
