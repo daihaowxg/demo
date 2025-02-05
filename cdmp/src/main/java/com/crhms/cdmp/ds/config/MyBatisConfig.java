@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @since 2025/2/5
  */
 @Configuration
-@MapperScan("com.crhms.cdmp.ds.mapper")
+@MapperScan("com.crhms.cdmp.*.mapper")
 public class MyBatisConfig {
 }

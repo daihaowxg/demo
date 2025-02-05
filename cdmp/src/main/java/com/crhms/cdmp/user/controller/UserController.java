@@ -1,7 +1,7 @@
-package com.crhms.cdmp.ds.controller;
+package com.crhms.cdmp.user.controller;
 
-import com.crhms.cdmp.ds.domain.User;
-import com.crhms.cdmp.ds.service.UserService;
+import com.crhms.cdmp.user.domain.User;
+import com.crhms.cdmp.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +29,16 @@ public class UserController {
     @GetMapping("slave")
     public List<User> getUsersFromSlave() {
         return userService.getUsersFromSlave();
+    }
+
+    @GetMapping("slave2")
+    public List<User> getUsersFromSlave2() {
+        return userService.getUsersFromSlave2();
+    }
+
+    @GetMapping("change")
+    public void changeDataSource() {
+        userService.changeDataSource();
     }
 
 }

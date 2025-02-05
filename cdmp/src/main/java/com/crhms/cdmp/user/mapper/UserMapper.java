@@ -1,7 +1,7 @@
-package com.crhms.cdmp.ds.mapper;
+package com.crhms.cdmp.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.crhms.cdmp.ds.domain.User;
+import com.crhms.cdmp.user.domain.User;
 
 /**
  * @author wxg

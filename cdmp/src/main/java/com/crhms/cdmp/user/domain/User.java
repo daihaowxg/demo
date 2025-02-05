@@ -1,4 +1,4 @@
-package com.crhms.cdmp.ds.domain;
+package com.crhms.cdmp.user.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
