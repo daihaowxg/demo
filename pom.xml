@@ -13,6 +13,8 @@
         <module>base</module>
         <module>disruptor</module>
         <module>cdmp</module>
+        <module>java</module>
+        <module>java/java-se</module>
     </modules>
 
     <properties>
