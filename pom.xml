@@ -15,6 +15,7 @@
         <module>cdmp</module>
         <module>java</module>
         <module>java/java-se</module>
+        <module>DesignPattern</module>
     </modules>
 
     <properties>
