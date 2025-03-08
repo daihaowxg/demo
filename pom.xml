@@ -16,6 +16,7 @@
         <module>java</module>
         <module>java/java-se</module>
         <module>DesignPattern</module>
+        <module>Algorithm</module>
     </modules>
 
     <properties>
