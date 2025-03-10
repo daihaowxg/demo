@@ -9,12 +9,20 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Algorithm</artifactId>
+    <artifactId>04_disruptor</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+    </dependencies>
 
 </project>
