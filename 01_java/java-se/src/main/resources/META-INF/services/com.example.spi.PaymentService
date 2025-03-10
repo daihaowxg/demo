@@ -1,0 +1,2 @@
+com.example.spi.impl.AliPaymentService
+com.example.spi.impl.WeChatPaymentService
