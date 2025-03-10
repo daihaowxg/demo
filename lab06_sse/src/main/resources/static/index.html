@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE 示例</title>
+</head>
+<body>
+<h2>服务器推送消息：</h2>
+<div id="messages"></div>
+
+<script>
+    const eventSource = new EventSource("/sse");
+
+    eventSource.onmessage = function(event) {
+        const messagesDiv = document.getElementById("messages");
+        const newMessage = document.createElement("p");
+        newMessage.textContent = event.data;
+        messagesDiv.appendChild(newMessage);
+    };
+
+    eventSource.onerror = function() {
+        console.error("SSE 连接错误");
+        eventSource.close();
+    };
+</script>
+</body>
+</html>
