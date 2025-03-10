@@ -10,13 +10,13 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>00_copy</module>
-        <module>04_disruptor</module>
-        <module>05_dynamic-datasource</module>
-        <module>01_java</module>
-        <module>01_java/java-se</module>
-        <module>03_design-pattern</module>
-        <module>02_algorithm</module>
+        <module>lab00_startup</module>
+        <module>lab01_java</module>
+        <module>lab02_algorithm</module>
+        <module>lab04_disruptor</module>
+        <module>lab03_design-pattern</module>
+        <module>lab05_dynamic-datasource</module>
+        <module>lab06_sse</module>
     </modules>
 
     <properties>

@@ -9,7 +9,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>02_algorithm</artifactId>
+    <artifactId>lab01_java</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>lab01_java-se</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
