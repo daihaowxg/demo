@@ -5,17 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>demo</artifactId>
+        <artifactId>lab01_java</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>lab01_java</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>lab01_java-se</module>
-        <module>lab01_juc</module>
-    </modules>
+    <artifactId>lab01_juc</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
