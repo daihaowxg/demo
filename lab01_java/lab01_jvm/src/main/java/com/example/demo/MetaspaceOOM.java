@@ -2,6 +2,10 @@ package com.example.demo;
 
 
 import javassist.ClassPool;
+import javassist.CtClass;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 方法区/元空间溢出：动态生成大量类，导致方法区/元空间溢出
@@ -17,8 +21,12 @@ public class MetaspaceOOM {
      */
     public static void main(String[] args) throws Exception {
         ClassPool classPool = ClassPool.getDefault();
+        List<CtClass> classList = new ArrayList<>(); // 保存类引用，防止 GC 回收
         for (int i = 0; ; i++) {
-            classPool.makeClass("com.example.GeneratedClass" + i).toClass();
+            CtClass generatedClass = classPool.makeClass("com.example.GeneratedClass" + i);
+            classList.add(generatedClass); // 持有类引用
+            generatedClass.toClass();
+            System.out.println("Generated class: " + i);
         }
     }
 }
