@@ -14,8 +14,9 @@
 
     <modules>
         <module>lab01_java-se</module>
-        <module>lab01_juc</module>
         <module>lab01_java_collection</module>
+        <module>lab01_juc</module>
+        <module>lab01_jvm</module>
     </modules>
 
 </project>
