@@ -1,4 +1,4 @@
-package com.example.threadlocal;
+package com.example.demo.threadlocal;
 
 /**
  * @author wxg
