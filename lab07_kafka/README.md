@@ -1,0 +1,3 @@
+- SpringBoot集成Kafka详解：https://blog.csdn.net/qq_44749491/article/details/130152503
+- Kafka 集成 Spring Boot：https://www.cnblogs.com/fanqisoft/p/18031324
+- SpringBoot 整合 Kafka 实现千万级数据异步处理，实战介绍！：https://cloud.tencent.com/developer/article/2223134
