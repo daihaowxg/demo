@@ -11,14 +11,7 @@ public class Configuration {
     }
 
     @Bean
-    public AnotherBean anotherBean() {
-        return new AnotherBean();
-    }
-}
-
-class AnotherBean {
-    public AnotherBean() {
-        System.out.println("============================================================================ 让 BeanPostProcessor 生效");
-        System.out.println("8. AnotherBean 的构造方法");
+    public CustomBeanPostProcessor customBeanPostProcessor() {
+        return new CustomBeanPostProcessor();
     }
 }
