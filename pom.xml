@@ -18,6 +18,7 @@
         <module>lab05_dynamic-datasource</module>
         <module>lab06_sse</module>
         <module>lab07_kafka</module>
+        <module>lab08_spring</module>
     </modules>
 
     <properties>
