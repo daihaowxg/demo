@@ -3,26 +3,31 @@ package com.example.spring.lifestyle;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
+
     public static void main(String[] args) {
-        // 创建 Spring 容器
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
-        // 获取 Bean 并使用
-        MyBean myBean = context.getBean(MyBean.class);
-        myBean.sayHello();
-
-        // 关闭容器，触发销毁
-        context.close();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Configuration.class);
+        CustomBean customBean = context.getBean(CustomBean.class);
+        customBean.sayHello();
+        context.close(); // 关闭容器，触发销毁阶段
     }
 
-    // 1. MyBean 实例化：构造方法被调用
-    // 2. 属性填充：设置 name = TestBean
-    // 3. BeanNameAware：Bean 名称 = myBean
-    // 4. @PostConstruct：初始化前执行
-    // 5. InitializingBean：afterPropertiesSet 方法执行
-    // 6. 自定义初始化方法：customInit 执行
-    //     MyBean [myBean] 正在使用中，name = TestBean
-    // 7. @PreDestroy：销毁前执行
-    // 8. DisposableBean：destroy 方法执行
-    // 9. 自定义销毁方法：customDestroy 执行
+    // 1. 调用 CustomBean 的构造方法
+    // ============================================================================ 各种 Aware 接口
+    // 2. 调用 BeanNameAware 的 setBeanName 方法
+    // 3. 调用 BeanFactoryAware 的 setBeanFactory 方法
+    // 4. 调用 ApplicationContextAware 的 setApplicationContext 方法
+    // ============================================================================ 构造完毕后执行自定义逻辑
+    // 5. 调用 @PostConstruct 注解的方法
+    // 6. 调用 InitializingBean 的 afterPropertiesSet 方法
+    // 7. 自定义初始化方法：customInit 执行
+    // ============================================================================ 让 BeanPostProcessor 生效
+    // 8. AnotherBean 的构造方法
+    // 9. 调用 BeanPostProcessor 的 postProcessBeforeInitialization 方法
+    // 10. 调用 BeanPostProcessor 的 postProcessAfterInitialization 方法
+    // ============================================================================ 进入使用阶段
+    // 11. 调用 CustomBean 的 sayHello 方法
+    // ============================================================================ 销毁前执行自定义逻辑
+    // 12. 调用 @PreDestroy 注解的方法
+    // 13. 调用 DisposableBean 的 destroy 方法
+    // 14. 自定义销毁方法：customDestroy 执行
 }
