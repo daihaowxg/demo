@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PubSubController {
 
     @Autowired
-    private TaskProducer producer;
+    private TaskPublisher producer;
 
 
     @PostMapping("pubsub/produce")

@@ -6,11 +6,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
+ * 发布订阅消息
  * @author wxg
  * @since 2025/4/11
  */
 @Service
-public class TaskProducer {
+public class TaskPublisher {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

@@ -23,6 +23,7 @@ public class RedisPubSubConfig {
                                                         TaskConsumer2 listener2) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
+        // 两个监听器监听同一个channel
         container.addMessageListener(listener1, new ChannelTopic(CHANNEL_KEY));
         container.addMessageListener(listener2, new ChannelTopic(CHANNEL_KEY));
         return container;

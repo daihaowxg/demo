@@ -7,7 +7,7 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.stereotype.Component;
 
 /**
- * 消息订阅者
+ * 订阅消息
  * @author wxg
  * @since 2025/4/11
  */
