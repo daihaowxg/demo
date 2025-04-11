@@ -22,7 +22,7 @@ public class ListQueueController {
     /**
      * 1. 生产消息
      */
-    @PostMapping("/produce")
+    @PostMapping("list-queue/produce")
     public String produce(@RequestBody Task task) {
         listQueueService.produce(task);
         return "success";
