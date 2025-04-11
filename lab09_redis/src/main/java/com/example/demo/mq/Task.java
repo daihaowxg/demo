@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 消息任务
  * @author wxg
  * @since 2025/4/11
  */
