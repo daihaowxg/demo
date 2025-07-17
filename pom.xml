@@ -21,6 +21,7 @@
         <module>lab08_spring</module>
         <module>lab09_redis</module>
         <module>lab10_system-design</module>
+        <module>lab11_mybatis</module>
     </modules>
 
     <properties>

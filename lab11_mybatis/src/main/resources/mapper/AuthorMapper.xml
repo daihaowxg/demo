@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AuthorMapper">
+
+    <select id="findAuthorById" resultType="com.example.model.Author">
+        SELECT * FROM Author WHERE id = #{id}
+    </select>
+
+    <insert id="insertAuthor" parameterType="com.example.model.Author">
+        INSERT INTO Author (id, username, password, email, bio)
+        VALUES (#{id}, #{username}, #{password}, #{email}, #{bio})
+    </insert>
+
+    <update id="updateAuthorIfNecessary">
+        update Author
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="bio != null">bio=#{bio}</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>
