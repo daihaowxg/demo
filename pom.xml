@@ -23,6 +23,7 @@
         <module>lab10_system-design</module>
         <module>lab11_mybatis</module>
         <module>lab12_hutool</module>
+        <module>lab13_junit</module>
     </modules>
 
     <properties>
