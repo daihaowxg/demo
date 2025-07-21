@@ -24,6 +24,7 @@
         <module>lab11_mybatis</module>
         <module>lab12_hutool</module>
         <module>lab13_junit</module>
+        <module>lab14_spring-boot-logging</module>
     </modules>
 
     <properties>
