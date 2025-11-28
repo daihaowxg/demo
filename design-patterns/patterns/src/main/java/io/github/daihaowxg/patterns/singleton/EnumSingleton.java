@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.sinleton;
+package io.github.daihaowxg.patterns.singleton;
 
 /**
  * 枚举单例（最安全，推荐）

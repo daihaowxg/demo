@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.factory;
+package io.github.daihaowxg.patterns.factory;
 
 
 // 1. 定义手机接口（产品）

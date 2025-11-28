@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.sinleton;
+package io.github.daihaowxg.patterns.singleton;
 
 /**
  * 双重检查锁（DCL，线程安全，推荐）

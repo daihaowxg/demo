@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.sinleton;
+package io.github.daihaowxg.patterns.singleton;
 
 /**
  * 静态内部类（线程安全，推荐）

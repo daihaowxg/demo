@@ -4,4 +4,4 @@
  * @author wxg
  * @since 2025/3/6
  */
-package io.github.daihaowxg.demo.designpattern.sinleton;
+package io.github.daihaowxg.patterns.singleton;

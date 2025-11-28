@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.factory;
+package io.github.daihaowxg.patterns.factory;
 
 /**
  * @author wxg

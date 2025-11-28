@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.sinleton;
+package io.github.daihaowxg.patterns.singleton;
 
 /**
  * 饿汉式单例模式(线程安全)

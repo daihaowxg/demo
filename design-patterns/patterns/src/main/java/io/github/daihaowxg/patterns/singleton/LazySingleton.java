@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo.designpattern.sinleton;
+package io.github.daihaowxg.patterns.singleton;
 
 /**
  * 懒汉式（synchronized 方法，线程安全）
