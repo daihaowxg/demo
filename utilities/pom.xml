@@ -24,6 +24,7 @@
     <modules>
         <module>hutool-examples</module>
         <module>junit-examples</module>
+        <module>openrewrite-demo</module>
         <module>system-design</module>
     </modules>
 

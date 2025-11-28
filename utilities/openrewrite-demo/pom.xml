@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.daihaowxg</groupId>
+    <artifactId>openrewrite-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>OpenRewrite Demo</name>
+    <description>OpenRewrite 自动化代码重构工具实验项目</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- OpenRewrite 版本 -->
+        <rewrite.version>8.67.0</rewrite.version>
+        <rewrite-maven-plugin.version>5.42.2</rewrite-maven-plugin.version>
+    </properties>
+
+    <!-- 仓库配置 - OpenRewrite 依赖可能不在阿里云镜像中 -->
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven-central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <!-- 用于演示的依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>2.7.18</version>
+        </dependency>
+
+        <!-- JUnit 4 (用于演示迁移到 JUnit 5) -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <!-- OpenRewrite Maven Plugin -->
+            <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>6.24.0</version>
+                <configuration>
+                    <!-- 配置文件路径 -->
+                    <configLocation>${project.basedir}/rewrite.yml</configLocation>
+                    <!-- 激活的 recipes -->
+                    <activeRecipes>
+                        <!-- 可以在这里列出要激活的 recipes，或者在 rewrite.yml 中配置 -->
+                    </activeRecipes>
+                    <!-- 排除的路径 -->
+                    <exclusions>
+                        <exclusion>**/target/**</exclusion>
+                    </exclusions>
+                </configuration>
+                <dependencies>
+                    <!-- Spring Boot recipes -->
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-spring</artifactId>
+                        <version>6.19.0</version>
+                    </dependency>
+                    
+                    <!-- 静态分析和代码清理 -->
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-static-analysis</artifactId>
+                        <version>2.22.0</version>
+                    </dependency>
+                    
+                    <!-- 测试框架迁移 -->
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-testing-frameworks</artifactId>
+                        <version>3.21.2</version>
+                    </dependency>
+                    
+                    <!-- 迁移工具 -->
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-migrate-java</artifactId>
+                        <version>3.22.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

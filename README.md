@@ -41,6 +41,7 @@ java-labs/
 └── utilities/                   # 工具类与测试
     ├── hutool-examples/         # Hutool 工具库使用
     ├── junit-examples/          # JUnit 5 测试示例
+    ├── openrewrite-demo/        # OpenRewrite 自动化重构工具
     └── system-design/           # 系统设计案例
 ```
 

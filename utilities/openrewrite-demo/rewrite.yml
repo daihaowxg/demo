@@ -1,0 +1,69 @@
+---
+# OpenRewrite 配置文件
+# 文档: https://docs.openrewrite.org/reference/yaml-format-reference
+
+# 自定义 Recipe 组合示例
+type: specs.openrewrite.org/v1beta/recipe
+name: io.github.daihaowxg.openrewrite.CodeCleanup
+displayName: 代码清理组合
+description: 组合多个常用的代码清理和格式化 recipes
+recipeList:
+  # 自动格式化
+  - org.openrewrite.java.format.AutoFormat
+  
+  # 移除未使用的导入
+  - org.openrewrite.java.format.RemoveUnusedImports
+  
+  # 通用静态分析
+  - org.openrewrite.java.cleanup.CommonStaticAnalysis
+  
+  # 简化布尔表达式
+  - org.openrewrite.java.cleanup.SimplifyBooleanExpression
+  
+  # 移除多余的显式类型参数
+  - org.openrewrite.java.cleanup.ExplicitLambdaArgumentTypes
+
+---
+# Spring Boot 现代化最佳实践
+type: specs.openrewrite.org/v1beta/recipe
+name: io.github.daihaowxg.openrewrite.SpringBootBestPractices
+displayName: Spring Boot 最佳实践
+description: 应用 Spring Boot 开发的最佳实践
+recipeList:
+  # 使用构造器注入替代字段注入
+  - org.openrewrite.java.spring.NoAutowired
+  
+  # 使用 @RequiredArgsConstructor 替代 @Autowired
+  - org.openrewrite.java.spring.ImplicitWebAnnotationNames
+
+---
+# Java 现代化
+type: specs.openrewrite.org/v1beta/recipe
+name: io.github.daihaowxg.openrewrite.ModernJava
+displayName: Java 现代化
+description: 使用现代 Java 特性改进代码
+recipeList:
+  # 使用 var 关键字（Java 10+）
+  - org.openrewrite.java.cleanup.UseVarKeyword
+  
+  # 使用 Text Blocks（Java 15+）
+  - org.openrewrite.java.migrate.lang.UseTextBlocks
+  
+  # 使用 instanceof 模式匹配（Java 16+）
+  - org.openrewrite.java.migrate.lang.UseInstanceofPatternMatching
+
+---
+# 性能优化
+type: specs.openrewrite.org/v1beta/recipe
+name: io.github.daihaowxg.openrewrite.PerformanceOptimization
+displayName: 性能优化
+description: 应用常见的性能优化模式
+recipeList:
+  # 使用 StringBuilder 替代字符串拼接
+  - org.openrewrite.java.cleanup.ReplaceStringBuilderWithString
+  
+  # 优化集合操作
+  - org.openrewrite.java.cleanup.IndexOfChecksShouldUseAStartPosition
+  
+  # 移除不必要的装箱/拆箱
+  - org.openrewrite.java.cleanup.UnnecessaryPrimitiveAnnotations
