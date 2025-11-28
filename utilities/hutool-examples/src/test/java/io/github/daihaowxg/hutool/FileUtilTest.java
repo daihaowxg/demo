@@ -40,13 +40,19 @@ class FileUtilTest {
 
     @Test
     void isDirEmpty() {
-        // File dir = new File("src/test/java/com/example/hutool");
-        File dir = new File("src/test/java/com/example/empty");
-        boolean dirEmpty = FileUtil.isDirEmpty(dir);
-        if (dirEmpty) {
-            System.out.println("目录是空的");
-        } else {
-            System.out.println("目录不是空的");
+        File dir = new File("target/test-empty-dir");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        try {
+            boolean dirEmpty = FileUtil.isDirEmpty(dir);
+            if (dirEmpty) {
+                System.out.println("目录是空的");
+            } else {
+                System.out.println("目录不是空的");
+            }
+        } finally {
+            dir.delete();
         }
     }
 
