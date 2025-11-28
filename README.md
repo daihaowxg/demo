@@ -16,6 +16,7 @@ java-labs/
 │   ├── spring-boot-2.x/         # 基于 Spring Boot 2.7.x (JDK 8)
 │   │   ├── startup/             # 启动示例
 │   │   ├── spring-core/         # Spring 核心特性
+│   │   ├── spring-event/        # Spring 事件机制
 │   │   ├── mybatis-integration/ # MyBatis 集成
 │   │   ├── dynamic-datasource/  # 动态数据源
 │   │   ├── sse/                 # Server-Sent Events
