@@ -25,6 +25,7 @@
         <module>lab12_hutool</module>
         <module>lab13_junit</module>
         <module>lab14_spring-boot-logging</module>
+        <module>lab15_spring_transaction</module>
     </modules>
 
 </project>
