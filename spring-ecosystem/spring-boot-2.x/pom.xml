@@ -26,8 +26,6 @@
     <modules>
         <module>startup</module>
         <module>spring-core</module>
-        <module>spring-event</module>
-        <module>spring-async</module>
         <module>mybatis-integration</module>
         <module>dynamic-datasource</module>
         <module>sse</module>

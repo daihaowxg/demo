@@ -24,6 +24,8 @@
     </properties>
     
     <modules>
+        <module>spring-event</module>
+        <module>spring-async</module>
         <module>spring-transaction</module>
         <module>spring-cache</module>
     </modules>
