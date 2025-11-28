@@ -32,28 +32,28 @@ public class DeprecatedApiUsage {
      * 应该使用 Integer.valueOf()
      */
     public Integer createInteger(int value) {
-        return new Integer(value);
+        return Integer.valueOf(value);
     }
 
     /**
      * 使用 new Long() 构造器（已废弃）
      */
     public Long createLong(long value) {
-        return new Long(value);
+        return Long.valueOf(value);
     }
 
     /**
      * 使用 new Double() 构造器（已废弃）
      */
     public Double createDouble(double value) {
-        return new Double(value);
+        return Double.valueOf(value);
     }
 
     /**
      * 使用 new Boolean() 构造器（已废弃）
      */
     public Boolean createBoolean(boolean value) {
-        return new Boolean(value);
+        return Boolean.valueOf(value);
     }
 
     /**

@@ -86,7 +86,7 @@ public class CollectionExample {
      * 使用显式类型参数（可以用菱形操作符）
      */
     public Map<String, List<Integer>> createNestedMap() {
-        Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();
+        Map<String, List<Integer>> map = new HashMap<>();
         map.put("numbers", new ArrayList<Integer>());
         return map;
     }

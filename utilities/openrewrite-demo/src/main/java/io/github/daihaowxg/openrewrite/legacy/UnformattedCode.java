@@ -23,11 +23,7 @@ public class UnformattedCode {
 
     // 冗余的布尔表达式
     public boolean isAdult() {
-        if (age >= 18) {
-            return true;
-        } else {
-            return false;
-        }
+        return age >= 18;
     }
 
     // 低效的字符串拼接
@@ -35,22 +31,18 @@ public class UnformattedCode {
         String result = "";
         result = result + "Name: " + name;
         result = result + ", Age: " + age;
-        result = result + ", Hobbies: " + hobbies.toString();
-        return result;
+        return result + ", Hobbies: " + hobbies.toString();
     }
 
     // 可以简化的条件判断
     public boolean hasHobby(String hobby) {
-        if (hobbies.contains(hobby) == true) {
-            return true;
-        }
-        return false;
+        return hobbies.contains(hobby);
     }
 
     // 冗余的 null 检查
     public int getHobbyCount() {
         if (hobbies != null) {
-            if (hobbies.size() > 0) {
+            if (!hobbies.isEmpty()) {
                 return hobbies.size();
             } else {
                 return 0;
@@ -62,7 +54,7 @@ public class UnformattedCode {
 
     // 可以使用现代 Java 特性改进
     public List<String> getUpperCaseHobbies() {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (String hobby : hobbies) {
             result.add(hobby.toUpperCase());
         }

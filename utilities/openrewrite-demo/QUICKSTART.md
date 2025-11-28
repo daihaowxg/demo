@@ -47,7 +47,7 @@ cat src/main/java/io/github/daihaowxg/openrewrite/legacy/UnformattedCode.java
 运行通用静态分析清理：
 
 ```bash
-mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.java.cleanup.CommonStaticAnalysis
+mvn rewrite:run -Drewrite.activeRecipes=org.openrewrite.staticanalysis.CommonStaticAnalysis
 ```
 
 这会自动优化：
