@@ -26,6 +26,7 @@
         <module>lab13_junit</module>
         <module>lab14_spring-boot-logging</module>
         <module>lab15_spring_transaction</module>
+        <module>lab16_spring_cache</module>
     </modules>
 
 </project>
