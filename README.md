@@ -17,6 +17,7 @@ java-labs/
 │   │   ├── startup/             # 启动示例
 │   │   ├── spring-core/         # Spring 核心特性
 │   │   ├── spring-event/        # Spring 事件机制
+│   │   ├── spring-async/        # Spring 异步方法
 │   │   ├── mybatis-integration/ # MyBatis 集成
 │   │   ├── dynamic-datasource/  # 动态数据源
 │   │   ├── sse/                 # Server-Sent Events

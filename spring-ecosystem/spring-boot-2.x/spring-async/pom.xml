@@ -10,11 +10,7 @@
         <relativePath/>
     </parent>
 
-    <artifactId>spring-event</artifactId>
-
-    <properties>
-        <java.version>17</java.version>
-    </properties>
+    <artifactId>spring-async</artifactId>
 
     <dependencies>
         <dependency>

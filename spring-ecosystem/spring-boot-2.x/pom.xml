@@ -26,13 +26,14 @@
     <modules>
         <module>startup</module>
         <module>spring-core</module>
+        <module>spring-event</module>
+        <module>spring-async</module>
         <module>mybatis-integration</module>
         <module>dynamic-datasource</module>
         <module>sse</module>
         <module>kafka-integration</module>
         <module>redis-integration</module>
         <module>logging</module>
-        <module>spring-event</module>
     </modules>
 
 </project>
