@@ -1,13 +1,10 @@
 package io.github.daihaowxg.openrewrite.legacy;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.*;
 
-import static org.junit.Assert.*;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * JUnit 4 测试类
@@ -17,23 +14,23 @@ public class JUnit4Test {
 
     private UnformattedCode testObject;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         System.out.println("Setting up test class...");
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         System.out.println("Tearing down test class...");
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         testObject = new UnformattedCode("John", 25,
             java.util.Arrays.asList("Reading", "Gaming"));
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         testObject = null;
     }
@@ -42,7 +39,7 @@ public class JUnit4Test {
     public void testIsAdult() {
         // JUnit 4 断言
         assertTrue(testObject.isAdult());
-        assertTrue("Age should be 25", testObject.getAge() == 25);
+        assertTrue(testObject.getAge() == 25, "Age should be 25");
     }
 
     @Test
@@ -71,19 +68,22 @@ public class JUnit4Test {
         assertTrue(hobbies.contains("GAMING"));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testNullPointerException() {
-        testObject.setHobbies(null);
-        testObject.getUpperCaseHobbies();
+        assertThrows(NullPointerException.class, () -> {
+            testObject.setHobbies(null);
+            testObject.getUpperCaseHobbies();
+        });
     }
 
-    @Test(timeout = 1000)
+    @Test
+    @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     public void testPerformance() {
         // 应该在 1 秒内完成
         testObject.getDescription();
     }
 
-    @Ignore("This test is temporarily disabled")
+    @Disabled("This test is temporarily disabled")
     @Test
     public void testIgnored() {
         fail("This test should not run");
