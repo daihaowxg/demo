@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.example.demo</groupId>
+    <groupId>io.github.daihaowxg.demo</groupId>
     <artifactId>lab14_spring_boot_logging</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 

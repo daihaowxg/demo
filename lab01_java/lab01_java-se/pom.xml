@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>io.github.daihaowxg</groupId>
         <artifactId>lab01_java</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -23,6 +23,13 @@
             <artifactId>cglib</artifactId>
             <version>3.3.0</version>
         </dependency>
+
+        <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <scope>provided</scope>
+    <version>1.18.32</version>
+</dependency>
     </dependencies>
 
 </project>

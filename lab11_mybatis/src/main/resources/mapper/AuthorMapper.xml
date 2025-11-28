@@ -1,13 +1,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mapper.AuthorMapper">
+<mapper namespace="io.github.daihaowxg.mapper.AuthorMapper">
 
-    <select id="findAuthorById" resultType="com.example.model.Author">
+    <select id="findAuthorById" resultType="io.github.daihaowxg.model.Author">
         SELECT * FROM Author WHERE id = #{id}
     </select>
 
-    <insert id="insertAuthor" parameterType="com.example.model.Author">
+    <insert id="insertAuthor" parameterType="io.github.daihaowxg.model.Author">
         INSERT INTO Author (id, username, password, email, bio)
         VALUES (#{id}, #{username}, #{password}, #{email}, #{bio})
     </insert>

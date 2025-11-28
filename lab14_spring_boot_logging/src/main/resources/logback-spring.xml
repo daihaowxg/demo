@@ -38,8 +38,8 @@
         <appender-ref ref="Console" />
     </root>
 
-    <!-- LOG "com.example*" at TRACE level -->
-    <logger name="com.example" level="trace" additivity="false">
+    <!-- LOG "io.github.daihaowxg*" at TRACE level -->
+    <logger name="io.github.daihaowxg" level="trace" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

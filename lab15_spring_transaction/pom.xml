@@ -8,7 +8,7 @@
         <version>3.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>io.github.daihaowxg</groupId>
     <artifactId>lab15_spring_transaction</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>lab15_spring_transaction</name>
