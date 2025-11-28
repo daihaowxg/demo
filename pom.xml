@@ -14,17 +14,17 @@
         <module>lab01_java</module>
         <module>lab02_algorithm</module>
         <module>lab04_disruptor</module>
-        <module>lab03_design-pattern</module>
-        <module>lab05_dynamic-datasource</module>
+        <module>lab03_design_pattern</module>
+        <module>lab05_dynamic_datasource</module>
         <module>lab06_sse</module>
         <module>lab07_kafka</module>
         <module>lab08_spring</module>
         <module>lab09_redis</module>
-        <module>lab10_system-design</module>
+        <module>lab10_system_design</module>
         <module>lab11_mybatis</module>
         <module>lab12_hutool</module>
         <module>lab13_junit</module>
-        <module>lab14_spring-boot-logging</module>
+        <module>lab14_spring_boot_logging</module>
         <module>lab15_spring_transaction</module>
         <module>lab16_spring_cache</module>
     </modules>

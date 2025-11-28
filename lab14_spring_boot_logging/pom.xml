@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.example.demo</groupId>
-    <artifactId>lab14_spring-boot-logging</artifactId>
+    <artifactId>lab14_spring_boot_logging</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>

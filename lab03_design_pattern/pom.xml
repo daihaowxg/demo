@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>lab03_design-pattern</artifactId>
+    <artifactId>lab03_design_pattern</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

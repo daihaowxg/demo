@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>lab10_system-design</artifactId>
+    <artifactId>lab10_system_design</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
