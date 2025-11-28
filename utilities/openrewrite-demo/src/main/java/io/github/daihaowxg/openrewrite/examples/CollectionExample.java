@@ -7,7 +7,7 @@ import java.util.*;
  * 展示可以被 OpenRewrite 优化的集合使用模式
  */
 public class CollectionExample {
-    
+
     /**
      * 低效的集合初始化
      * 可以使用 List.of() 或 Arrays.asList()
@@ -19,7 +19,7 @@ public class CollectionExample {
         list.add("Cherry");
         return list;
     }
-    
+
     /**
      * 低效的 Map 初始化
      */
@@ -30,7 +30,7 @@ public class CollectionExample {
         map.put("three", 3);
         return map;
     }
-    
+
     /**
      * 可以使用 Stream API 简化
      */
@@ -43,7 +43,7 @@ public class CollectionExample {
         }
         return result;
     }
-    
+
     /**
      * 低效的查找操作
      */
@@ -55,14 +55,14 @@ public class CollectionExample {
         }
         return false;
     }
-    
+
     /**
      * 可以使用 Collections.emptyList()
      */
     public List<String> getEmptyList() {
         return new ArrayList<>();
     }
-    
+
     /**
      * 冗余的 null 检查和空集合创建
      */
@@ -70,7 +70,7 @@ public class CollectionExample {
         if (items == null) {
             items = new ArrayList<>();
         }
-        
+
         List<String> result = new ArrayList<>();
         if (!items.isEmpty()) {
             for (String item : items) {
@@ -81,7 +81,7 @@ public class CollectionExample {
         }
         return result;
     }
-    
+
     /**
      * 使用显式类型参数（可以用菱形操作符）
      */
@@ -90,7 +90,7 @@ public class CollectionExample {
         map.put("numbers", new ArrayList<Integer>());
         return map;
     }
-    
+
     /**
      * 低效的集合复制
      */
