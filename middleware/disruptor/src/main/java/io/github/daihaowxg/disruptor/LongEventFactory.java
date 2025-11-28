@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo;
+package io.github.daihaowxg.disruptor;
 
 import com.lmax.disruptor.EventFactory;
 

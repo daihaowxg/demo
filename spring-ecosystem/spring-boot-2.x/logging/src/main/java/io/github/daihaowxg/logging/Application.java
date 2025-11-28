@@ -1,4 +1,4 @@
-package io.github.daihaowxg.app;
+package io.github.daihaowxg.logging;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

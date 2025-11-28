@@ -1,4 +1,4 @@
-package io.github.daihaowxg.model;
+package io.github.daihaowxg.mybatis.model;
 
 import lombok.Getter;
 import lombok.Setter;

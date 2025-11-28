@@ -1,11 +1,11 @@
-package io.github.daihaowxg;
+package io.github.daihaowxg.mybatis;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.example.mapper") // 扫描 Mapper 接口
+@MapperScan("io.github.daihaowxg.mybatis.mapper") // 扫描 Mapper 接口
 public class Main {
 
     // @Autowired

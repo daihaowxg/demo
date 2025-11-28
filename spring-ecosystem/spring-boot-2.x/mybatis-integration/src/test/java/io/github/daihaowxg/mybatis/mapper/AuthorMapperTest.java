@@ -1,6 +1,6 @@
-package io.github.daihaowxg.mapper;
+package io.github.daihaowxg.mybatis.mapper;
 
-import io.github.daihaowxg.model.Author;
+import io.github.daihaowxg.mybatis.model.Author;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
-package io.github.daihaowxg.mapper;
+package io.github.daihaowxg.mybatis.mapper;
 
-import io.github.daihaowxg.model.Author;
+import io.github.daihaowxg.mybatis.model.Author;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

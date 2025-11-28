@@ -1,4 +1,4 @@
-package io.github.daihaowxg.demo;
+package io.github.daihaowxg.disruptor;
 
 /**
  * 定义事件

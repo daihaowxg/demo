@@ -1,4 +1,4 @@
-package io.github.daihaowxg.app.controller;
+package io.github.daihaowxg.logging.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
