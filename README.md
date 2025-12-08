@@ -10,7 +10,16 @@
 java-labs/
 ├── java-fundamentals/           # Java 基础示例
 │   ├── jdk8-examples/           # JDK 8 特性与基础 (集合, 并发, JVM)
-│   └── jdk17-examples/          # JDK 17+ 新特性
+│   ├── jdk17-examples/          # JDK 17+ 新特性
+│   └── concurrency-revisited/   # Java 并发编程重新学习 (JDK 17+)
+│       ├── 01-thread-basics/    # 线程基础
+│       ├── 02-synchronization/  # 线程安全与同步
+│       ├── 03-locks/            # Lock 框架
+│       ├── 04-concurrent-utilities/  # 并发工具类
+│       ├── 05-thread-pool/      # 线程池
+│       ├── 06-concurrent-collections/  # 并发集合
+│       ├── 07-atomic/           # 原子类
+│       └── 08-async-programming/  # Future 与异步编程
 │
 ├── spring-ecosystem/            # Spring 生态示例
 │   ├── spring-boot-2.x/         # 基于 Spring Boot 2.7.x (JDK 8)

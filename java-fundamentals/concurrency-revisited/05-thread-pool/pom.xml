@@ -6,19 +6,18 @@
     
     <parent>
         <groupId>io.github.daihaowxg</groupId>
-        <artifactId>java-labs</artifactId>
+        <artifactId>concurrency-revisited</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
-    <artifactId>java-fundamentals</artifactId>
-    <packaging>pom</packaging>
-    <name>Java Fundamentals</name>
-    <description>Java SE examples organized by JDK version</description>
+    <artifactId>05-thread-pool</artifactId>
+    <name>Thread Pool</name>
+    <description>线程池</description>
     
-    <modules>
-        <module>jdk8-examples</module>
-        <module>jdk17-examples</module>
-        <module>concurrency-revisited</module>
-    </modules>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>

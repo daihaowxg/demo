@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>io.github.daihaowxg</groupId>
+        <artifactId>java-fundamentals</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    
+    <artifactId>concurrency-revisited</artifactId>
+    <packaging>pom</packaging>
+    <name>Java Concurrency Revisited</name>
+    <description>Java 并发编程重新学习与总结</description>
+    
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <modules>
+        <!-- 基础概念 -->
+        <module>01-thread-basics</module>
+        <!-- 线程安全与同步 -->
+        <module>02-synchronization</module>
+        <!-- Lock 框架 -->
+        <module>03-locks</module>
+        <!-- 并发工具类 -->
+        <module>04-concurrent-utilities</module>
+        <!-- 线程池 -->
+        <module>05-thread-pool</module>
+        <!-- 并发集合 -->
+        <module>06-concurrent-collections</module>
+        <!-- 原子类 -->
+        <module>07-atomic</module>
+        <!-- Future 与异步编程 -->
+        <module>08-async-programming</module>
+    </modules>
+
+</project>
