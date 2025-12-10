@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-cache-demo
+
+  # Redis 配置（可选，如果不使用 Redis 可以注释掉）
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      # password: your_password
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  # 缓存配置
+  cache:
+    type: caffeine  # 使用 Caffeine 作为缓存实现，可选值：simple, caffeine, redis
+    cache-names: users, products, advanced  # 预定义的缓存名称
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=10m  # 默认配置
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    io.github.daihaowxg.demo.lab16springcache: DEBUG  # 开启 DEBUG 日志以观察缓存行为
