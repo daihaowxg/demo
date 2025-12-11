@@ -19,7 +19,7 @@ spring:
 
   # 缓存配置
   cache:
-    type: caffeine  # 使用 Caffeine 作为缓存实现，可选值：simple, caffeine, redis
+    type: redis  # 使用 Caffeine 作为缓存实现，可选值：simple, caffeine, redis
     cache-names: users, products, advanced  # 预定义的缓存名称
     caffeine:
       spec: maximumSize=1000,expireAfterWrite=10m  # 默认配置

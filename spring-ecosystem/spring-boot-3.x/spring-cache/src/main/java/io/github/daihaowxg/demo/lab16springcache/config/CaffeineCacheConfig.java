@@ -1,28 +1,22 @@
 package io.github.daihaowxg.demo.lab16springcache.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
-import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * 缓存配置类 - 配置 Caffeine 缓存管理器
+ * Caffeine 缓存配置类
  * 
- * Caffeine 是一个高性能的本地缓存库，基于 Google Guava Cache 改进
- * 特点：
- * 1. 高性能：使用 Window TinyLFU 淘汰算法
- * 2. 灵活配置：支持多种过期策略和大小限制
- * 3. 统计功能：可以统计缓存命中率等指标
+ * 只有当 spring.cache.type=caffeine (或者未配置) 时才加载
  */
 @Configuration
-@EnableCaching // 启用 Spring Cache 支持
-public class CacheConfig {
+@ConditionalOnProperty(name = "spring.cache.type", havingValue = "caffeine", matchIfMissing = true)
+public class CaffeineCacheConfig {
 
     /**
      * 配置 Caffeine 缓存管理器
@@ -30,7 +24,6 @@ public class CacheConfig {
      * @return CacheManager
      */
     @Bean
-    @Primary // 设置为主要的 CacheManager
     public CacheManager caffeineCacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
 
@@ -51,34 +44,7 @@ public class CacheConfig {
     }
 
     /**
-     * 自定义 KeyGenerator
-     * 
-     * 用于生成复杂的缓存 key
-     * 格式：类名:方法名:参数1:参数2:...
-     * 
-     * @return KeyGenerator
-     */
-    @Bean("customKeyGenerator")
-    public KeyGenerator customKeyGenerator() {
-        return (target, method, params) -> {
-            StringBuilder sb = new StringBuilder();
-            sb.append(target.getClass().getSimpleName()).append(":");
-            sb.append(method.getName()).append(":");
-            for (Object param : params) {
-                sb.append(param != null ? param.toString() : "null").append(":");
-            }
-            // 移除最后一个冒号
-            if (sb.length() > 0) {
-                sb.setLength(sb.length() - 1);
-            }
-            return sb.toString();
-        };
-    }
-
-    /**
      * 配置用户缓存（自定义配置）
-     * 
-     * 可以为不同的缓存设置不同的过期时间和大小限制
      * 
      * @return CacheManager
      */
