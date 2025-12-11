@@ -129,9 +129,55 @@
     curl "http://localhost:8080/advanced/custom-key?param1=abc&param2=123"
     ```
 
+
 ---
 
-## 4. 缓存配置说明
+## 4. 二级缓存 (MultiLevelDemoController)
+
+这是一个自定义实现的简易二级缓存（Caffeine L1 + Redis L2）。
+
+*   **注解**：`@Cacheable(..., cacheManager = "multiLevelCacheManager")`
+*   **逻辑**：
+    1.  查 L1 (Caffeine)：命中则返回。
+    2.  查 L2 (Redis)：命中则**回填 L1**并返回。
+    3.  查 数据库：命中则同时写入 L1 和 L2。
+
+### 测试步骤
+
+#### 1. 第一次查询（Cache Miss -> DB -> L2 -> L1）
+```bash
+curl http://localhost:8080/multilevel/100
+```
+*   **现象**：控制台打印 `[DB Query]`。
+*   **状态**：此时数据已在 Redis 和 Caffeine 中。
+
+#### 2. 第二次查询（L1 Hit）
+```bash
+curl http://localhost:8080/multilevel/100
+```
+*   **现象**：控制台打印 `[L1 Hit]`。**完全不查 Redis，极快**。
+
+#### 3. 模拟 L1 失效，测试 L2 Hit
+由于 Caffeine 在内存中，我们可以通过**重启应用**来模拟 L1 丢失（但 Redis 中依然有数据）。
+1.  停止应用 (`Ctrl+C`)。
+2.  重新启动 (`mvn spring-boot:run`)。
+3.  执行查询：
+    ```bash
+    curl http://localhost:8080/multilevel/100
+    ```
+*   **现象**：控制台打印 `[L2 Hit] ... 回填 L1`。**没有查 DB**。
+*   **状态**：数据被自动从 Redis 加载回了 Caffeine。
+
+#### 4. 第三次查询（L1 Hit again）
+```bash
+curl http://localhost:8080/multilevel/100
+```
+*   **现象**：再次变为 `[L1 Hit]`。
+
+---
+
+## 5. 缓存配置说明
+
 
 ### Caffeine 配置 (CacheConfig.java)
 我们在 `CacheConfig.java` 中配置了两个具体的缓存实例：
