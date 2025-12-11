@@ -28,6 +28,7 @@
         <module>spring-async</module>
         <module>spring-transaction</module>
         <module>spring-cache</module>
+        <module>spring-cache-multilevel</module>
     </modules>
 
 </project>
