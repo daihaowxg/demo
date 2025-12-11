@@ -68,10 +68,10 @@
 *   **注解**：`@Cacheable(..., condition = "#id > 0")`
 *   **测试命令**：
     ```bash
-    # ID > 0，会被缓存
+    # ID > 0，会被缓存（执行模拟数据库操作，耗时约1秒）
     curl http://localhost:8080/products/1
     
-    # 再次查询 ID 1（缓存命中）
+    # 再次查询 ID 1（缓存命中，直接返回缓存，毫秒级响应）
     curl http://localhost:8080/products/1
     ```
 
