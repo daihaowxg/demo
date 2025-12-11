@@ -100,7 +100,9 @@ curl http://localhost:8080/products/category/电子产品
 curl "http://localhost:8080/products/price-range?minPrice=100&maxPrice=2000"
 
 # 组合条件查询
-curl "http://localhost:8080/products/combo?category=电子产品&maxPrice=3000"
+# 中文可能会有问题
+# curl "http://localhost:8080/products/combo?category=电子产品&maxPrice=3000"
+curl "http://localhost:8080/products/combo?category=%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81&maxPrice=3000"
 ```
 
 ### 5. 测试进阶特性
