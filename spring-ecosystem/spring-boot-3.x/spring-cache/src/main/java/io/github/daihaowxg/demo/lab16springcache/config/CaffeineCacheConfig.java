@@ -6,12 +6,13 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Caffeine 缓存配置类
- * 
+ * <p>
  * 只有当 spring.cache.type=caffeine (或者未配置) 时才加载
  */
 @Configuration
@@ -20,10 +21,11 @@ public class CaffeineCacheConfig {
 
     /**
      * 配置 Caffeine 缓存管理器
-     * 
+     *
      * @return CacheManager
      */
     @Bean
+    @Primary
     public CacheManager caffeineCacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
 
@@ -45,7 +47,7 @@ public class CaffeineCacheConfig {
 
     /**
      * 配置用户缓存（自定义配置）
-     * 
+     *
      * @return CacheManager
      */
     @Bean("userCacheManager")
@@ -60,7 +62,7 @@ public class CaffeineCacheConfig {
 
     /**
      * 配置商品缓存（自定义配置）
-     * 
+     *
      * @return CacheManager
      */
     @Bean("productCacheManager")

@@ -85,3 +85,54 @@
     *   *建议*：尽量保持缓存操作在事务外部，或者了解具体的执行顺序。
 3.  **多线程环境下的 ThreadLocal**：如果在缓存 Key 生成逻辑中使用了 ThreadLocal，注意多线程切换可能导致的问题。
 
+
+## 6. 进阶配置技巧
+
+### 6.1 针对不同业务配置不同 TTL (Time-To-Live)
+
+默认的 `CacheManager` 通常只提供一种全局的过期策略。但在实际业务中，不同数据的更新频率差异很大（例如：用户信息相对稳定，而商品价格可能频繁变动）。
+
+**最佳实践**：为不同的业务场景定义专属的 `CacheManager` Bean。
+
+**示例代码**：
+```java
+    /**
+     * 配置用户缓存（自定义配置）
+     * 适用于：更新频率低，读取频繁的数据
+     */
+    @Bean("userCacheManager")
+    public CacheManager userCacheManager() {
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("users");
+        cacheManager.setCaffeine(Caffeine.newBuilder()
+                .maximumSize(500)
+                .expireAfterWrite(30, TimeUnit.MINUTES) // 较长过期时间
+                .recordStats());
+        return cacheManager;
+    }
+
+    /**
+     * 配置商品缓存（自定义配置）
+     * 适用于：库存/价格变动频繁的数据
+     */
+    @Bean("productCacheManager")
+    public CacheManager productCacheManager() {
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("products");
+        cacheManager.setCaffeine(Caffeine.newBuilder()
+                .maximumSize(2000)
+                .expireAfterWrite(5, TimeUnit.MINUTES) // 较短过期时间
+                .recordStats());
+        return cacheManager;
+    }
+```
+
+**使用方式**：
+在 `@Cacheable` 注解中显式指定 `cacheManager`：
+```java
+// 使用用户专属配置 (30分钟过期)
+@Cacheable(value = "users", key = "#id", cacheManager = "userCacheManager")
+public User getUser(Long id) { ... }
+
+// 使用商品专属配置 (5分钟过期)
+@Cacheable(value = "products", key = "#id", cacheManager = "productCacheManager")
+public Product getProduct(Long id) { ... }
+```

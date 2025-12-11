@@ -19,11 +19,11 @@ import java.time.Duration;
 
 /**
  * Redis 缓存配置类（可选）
- * 
+ * <p>
  * 使用条件：
  * - 需要在 application.yml 中配置 spring.cache.type=redis
  * - 需要启动 Redis 服务
- * 
+ * <p>
  * Redis 适用场景：
  * 1. 分布式系统：多个应用实例共享缓存
  * 2. 大数据量：本地缓存容量有限
@@ -35,7 +35,7 @@ public class RedisCacheConfig {
 
     /**
      * 配置 Redis 缓存管理器
-     * 
+     *
      * @param connectionFactory Redis 连接工厂
      * @return CacheManager
      */
@@ -58,7 +58,8 @@ public class RedisCacheConfig {
                 .disableCachingNullValues()
                 // 设置 key 序列化方式（String）
                 .serializeKeysWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                        RedisSerializationContext.SerializationPair
+                                .fromSerializer(new StringRedisSerializer()))
                 // 设置 value 序列化方式（JSON）
                 .serializeValuesWith(
                         RedisSerializationContext.SerializationPair.fromSerializer(serializer));
