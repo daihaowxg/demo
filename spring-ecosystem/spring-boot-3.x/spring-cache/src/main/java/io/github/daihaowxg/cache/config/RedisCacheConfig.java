@@ -55,7 +55,7 @@ public class RedisCacheConfig {
                 // 设置缓存过期时间（10 分钟）
                 .entryTtl(Duration.ofMinutes(10))
                 // 禁用缓存空值
-                .disableCachingNullValues()
+                // .disableCachingNullValues()
                 // 设置 key 序列化方式（String）
                 .serializeKeysWith(
                         RedisSerializationContext.SerializationPair
