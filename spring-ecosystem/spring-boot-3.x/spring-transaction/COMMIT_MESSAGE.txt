@@ -1,0 +1,35 @@
+feat(spring-transaction): 添加 ConnectionHolder Bug 演示项目
+
+演示 Spring 事务管理中 "connection holder is null" 错误的常见场景
+
+新增功能：
+- 创建三个演示类展示不同的 bug 场景
+  * ConnectionHolderBugDemoService: 演示三种常见错误场景和正确用法
+  * ConnectionHolderInternalDemo: 展示 Spring 内部 TransactionSynchronizationManager 机制
+  * ConnectionHolderBugDemoRunner: 自动运行所有演示的 CommandLineRunner
+
+Bug 场景演示：
+1. 在事务上下文之外访问连接（缺少 @Transactional）
+2. 在不同线程中访问连接（ThreadLocal 特性）
+3. 在事务完成后访问连接（生命周期问题）
+
+技术实现：
+- 添加 spring-boot-starter-jdbc 依赖
+- 添加 H2 内存数据库支持
+- 配置 DEBUG 级别的事务和 JDBC 日志
+- 所有代码包含详细的中文注释
+
+文档：
+- CONNECTION_HOLDER_BUG_DEMO.md: 详细的中文使用文档
+- SETUP_GUIDE.md: 环境配置指南（Java 17 要求）
+
+修改文件：
+- pom.xml: 添加 JDBC 和 H2 依赖
+- application.properties: 配置数据库和日志
+
+新增文件：
+- demo/ConnectionHolderBugDemoService.java
+- demo/ConnectionHolderInternalDemo.java
+- demo/ConnectionHolderBugDemoRunner.java
+- CONNECTION_HOLDER_BUG_DEMO.md
+- SETUP_GUIDE.md
