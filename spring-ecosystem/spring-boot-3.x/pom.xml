@@ -29,6 +29,7 @@
         <module>spring-transaction</module>
         <module>spring-cache</module>
         <module>spring-cache-multilevel</module>
+        <module>spring-jdbc</module>
     </modules>
 
 </project>

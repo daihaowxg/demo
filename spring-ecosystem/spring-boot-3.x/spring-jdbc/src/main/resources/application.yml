@@ -1,0 +1,3 @@
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: io.github.daihaowxg.spring.jdbc.entity

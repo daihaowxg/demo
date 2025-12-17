@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace: 必须与 Mapper 接口的全限定名一致。
+    MyBatis 使用这个来绑定接口和 XML。
+-->
+<mapper namespace="io.github.daihaowxg.spring.jdbc.mapper.UserMapper">
+
+    <!--
+        resultMap: 定义如何将查询结果集映射到 Java 对象。
+        虽然对于简单的同名字段可以自动映射，但显式定义 ResultMap 是更好的实践，
+        特别是当字段名和列名不一致时。
+    -->
+    <resultMap id="UserResultMap" type="io.github.daihaowxg.spring.jdbc.entity.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <!--
+        insert: 插入语句。
+        useGeneratedKeys="true" keyProperty="id":
+        告诉 MyBatis 使用 JDBC 的 getGeneratedKeys 获取主键，并赋值给 User 对象的 id 属性。
+        相比 StandardJdbcRepository 中的手动处理，这里只需配置一下属性即可。
+    -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (name, email)
+        VALUES (#{name}, #{email})
+    </insert>
+
+    <!--
+        select: 查询语句。
+        resultMap="UserResultMap": 指定结果映射。
+        parameterType 可以省略，MyBatis 会自动推断。
+    -->
+    <select id="findById" resultMap="UserResultMap">
+        SELECT id, name, email
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT id, name, email
+        FROM users
+    </select>
+
+    <update id="update">
+        UPDATE users
+        SET name = #{name},
+            email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM users
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
