@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -16,31 +19,34 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
- * Redis 缓存配置类（可选）
- * <p>
- * 使用条件：
- * - 需要在 application.yml 中配置 spring.cache.type=redis
- * - 需要启动 Redis 服务
- * <p>
- * Redis 适用场景：
- * 1. 分布式系统：多个应用实例共享缓存
- * 2. 大数据量：本地缓存容量有限
- * 3. 持久化需求：Redis 可以持久化缓存数据
+ * 混合缓存配置：Redis 优先，Caffeine 兜底
  */
+@Slf4j
 @Configuration
-@ConditionalOnProperty(name = "spring.cache.type", havingValue = "redis")
-public class RedisCacheConfig {
+public class HybridCacheConfig {
 
     /**
-     * 配置 Redis 缓存管理器
-     *
-     * @param connectionFactory Redis 连接工厂
-     * @return CacheManager
+     * 动态配置 CacheManager
+     * 启动时检测 Redis 连接，如果可用则使用 Redis，否则降级为 Caffeine
      */
     @Bean
-    public CacheManager redisCacheManager(RedisConnectionFactory connectionFactory) {
+    @Primary
+    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+        try {
+            // 尝试连接 Redis 进行检测
+            connectionFactory.getConnection().ping();
+            log.info("Redis连接成功，使用 RedisCacheManager");
+            return createRedisCacheManager(connectionFactory);
+        } catch (Exception e) {
+            log.warn("Redis连接失败或不可用，降级使用 CaffeineCacheManager", e);
+            return createCaffeineCacheManager();
+        }
+    }
+
+    private RedisCacheManager createRedisCacheManager(RedisConnectionFactory connectionFactory) {
         // 配置 JSON 序列化器
         Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -54,8 +60,6 @@ public class RedisCacheConfig {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 // 设置缓存过期时间（10 分钟）
                 .entryTtl(Duration.ofMinutes(10))
-                // 禁用缓存空值
-                // .disableCachingNullValues()
                 // 设置 key 序列化方式（String）
                 .serializeKeysWith(
                         RedisSerializationContext.SerializationPair
@@ -73,5 +77,15 @@ public class RedisCacheConfig {
                 .withCacheConfiguration("products",
                         config.entryTtl(Duration.ofMinutes(5)))
                 .build();
+    }
+
+    private CaffeineCacheManager createCaffeineCacheManager() {
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager();
+        cacheManager.setCaffeine(Caffeine.newBuilder()
+                .initialCapacity(100)
+                .maximumSize(1000)
+                .expireAfterWrite(10, TimeUnit.MINUTES)
+                .recordStats());
+        return cacheManager;
     }
 }
