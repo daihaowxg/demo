@@ -19,6 +19,7 @@
         <module>design-patterns</module>
         <module>algorithms</module>
         <module>utilities</module>
+        <module>clean-code</module>
     </modules>
 
 </project>
