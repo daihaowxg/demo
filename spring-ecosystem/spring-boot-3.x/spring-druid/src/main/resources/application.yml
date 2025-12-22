@@ -1,0 +1,137 @@
+spring:
+  application:
+    name: spring-druid-demo
+  
+  # 数据源配置
+  datasource:
+    # Druid 数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    
+    # 基本连接信息
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    
+    # Druid 连接池配置
+    druid:
+      # 初始化连接数
+      initial-size: 5
+      # 最小空闲连接数
+      min-idle: 5
+      # 最大活跃连接数
+      max-active: 20
+      # 获取连接时的最大等待时间（毫秒）
+      max-wait: 60000
+      
+      # 配置间隔多久进行一次检测，检测需要关闭的空闲连接（毫秒）
+      # ⚠️ 这个值也影响 removeAbandoned 的检查频率！
+      # 测试环境：设置为 1000ms（1秒）以便快速测试 removeAbandoned
+      # 生产环境：建议设置为 60000ms（60秒）
+      time-between-eviction-runs-millis: 1000
+      # 配置连接在池中的最小生存时间（毫秒）
+      min-evictable-idle-time-millis: 300000
+      
+      # 验证连接是否有效的 SQL
+      validation-query: SELECT 1
+      # 申请连接时执行 validationQuery 检测连接是否有效，会降低性能
+      test-on-borrow: false
+      # 归还连接时执行 validationQuery 检测连接是否有效，会降低性能
+      test-on-return: false
+      # 建议配置为 true，不影响性能，并且保证安全性
+      test-while-idle: true
+      
+      # ========== 连接泄漏检测配置 ==========
+      # ⚠️ 警告：Druid 官方不建议在生产环境开启 removeAbandoned
+      # 原因：可能会误杀正常的长时间查询，导致业务异常
+      # 
+      # 使用建议：
+      # - 开发/测试环境：建议开启，帮助发现代码中的连接泄漏问题
+      # - 生产环境：谨慎使用，如果开启，务必设置合理的超时时间
+      # 
+      # 是否开启连接泄漏自动回收（当连接超过 removeAbandonedTimeout 时间未归还，则强制回收）
+      remove-abandoned: true
+      # 连接泄漏超时时间（秒），超过此时间未归还的连接将被强制回收
+      # 建议设置为业务最长执行时间的 1.5-2 倍，避免误杀正常的长时间查询
+      # 开发环境：可以设置较小的值（如 60-180 秒）快速发现问题
+      # 生产环境：建议设置较大的值（如 300-600 秒）避免误杀
+      remove-abandoned-timeout: 5
+      # 是否在连接被回收时打印日志，便于排查连接泄漏问题
+      # 开启后会打印完整的堆栈信息，显示连接是在哪里被获取的
+      log-abandoned: true
+      
+      # 是否缓存 PreparedStatement，即 PSCache
+      # PSCache 对支持游标的数据库性能提升巨大，如 Oracle、PostgreSQL
+      # 在 MySQL 下建议关闭
+      pool-prepared-statements: false
+      # 指定每个连接上 PSCache 的大小
+      max-pool-prepared-statement-per-connection-size: 20
+      
+      # 配置监控统计拦截的 filters
+      # stat: 监控统计
+      # wall: 防御 SQL 注入
+      # slf4j: 日志
+      filters: stat,wall,slf4j
+      
+      # 通过 connectProperties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      
+      # 配置 DruidStatFilter (监控统计过滤器)
+      web-stat-filter:
+        enabled: true
+        # 过滤所有请求
+        url-pattern: /*
+        # 排除静态资源和 Druid 监控页面
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+        # 是否启用 session 统计
+        session-stat-enable: true
+        # session 统计的最大个数
+        session-stat-max-count: 1000
+        # 配置 principalSessionName，使得 druid 能够知道当前的 session 的用户是谁
+        # principal-session-name: user
+      
+      # 配置 DruidStatViewServlet (监控页面)
+      stat-view-servlet:
+        enabled: true
+        # 监控页面访问路径
+        url-pattern: /druid/*
+        # 是否重置数据
+        reset-enable: false
+        # 监控页面登录用户名
+        login-username: admin
+        # 监控页面登录密码
+        login-password: admin123
+        # IP 白名单（为空则允许所有访问）
+        # allow: 127.0.0.1,192.168.1.1
+        # IP 黑名单（优先于白名单）
+        # deny: 192.168.1.100
+      
+      # 配置 Wall Filter (防火墙)
+      wall:
+        config:
+          # 是否允许多条语句一起执行
+          multi-statement-allow: true
+          # 是否允许删除表
+          delete-allow: true
+          # 是否允许删除数据
+          drop-table-allow: false
+
+# 日志配置
+logging:
+  level:
+    # Druid 日志级别（连接泄漏日志会以 WARN 级别输出）
+    com.alibaba.druid: debug
+    # SQL 日志级别
+    io.github.daihaowxg.druid: debug
+  
+  # 日志文件配置（可选）
+  file:
+    # 日志文件路径
+    name: logs/spring-druid.log
+  
+  # 日志格式配置
+  pattern:
+    # 控制台日志格式
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n%wEx"
+    # 文件日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n%wEx"

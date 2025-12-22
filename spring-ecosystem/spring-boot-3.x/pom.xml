@@ -30,6 +30,7 @@
         <module>spring-cache</module>
         <module>spring-cache-multilevel</module>
         <module>spring-jdbc</module>
+        <module>spring-druid</module>
     </modules>
 
 </project>
