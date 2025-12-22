@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    # 主数据源配置
+    primary:
+      jdbc-url: jdbc:h2:mem:primarydb
+      username: sa
+      password: 
+      driver-class-name: org.h2.Driver
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
+    
+    # 第二个数据源配置
+    secondary:
+      jdbc-url: jdbc:h2:mem:secondarydb
+      username: sa
+      password: 
+      driver-class-name: org.h2.Driver
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
+
+  # SQL 初始化配置
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:schema-primary.sql
+        - classpath:schema-secondary.sql
+
+# MyBatis 配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # 下划线转驼峰
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl  # 日志实现
+
+# 日志配置
+logging:
+  level:
+    io.github.daihaowxg.mybatis: DEBUG
+    org.springframework.jdbc: DEBUG

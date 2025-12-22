@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: multidatasource
+
+  # 多数据源配置
+  datasource:
+    # 主数据源配置
+    primary:
+      jdbc-url: jdbc:h2:mem:primarydb
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
+        connection-timeout: 30000
+
+    # 第二个数据源配置
+    secondary:
+      jdbc-url: jdbc:h2:mem:secondarydb
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+      hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
+        connection-timeout: 30000
+
+  # H2 控制台配置 (可选,用于调试)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# 日志配置
+logging:
+  level:
+    io.github.daihaowxg: DEBUG
+    org.springframework.jdbc: DEBUG

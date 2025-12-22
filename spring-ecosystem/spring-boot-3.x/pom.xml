@@ -31,6 +31,8 @@
         <module>spring-cache-multilevel</module>
         <module>spring-jdbc</module>
         <module>spring-druid</module>
+        <module>multidatasource</module>
+        <module>multidatasource-mybatis</module>
     </modules>
 
 </project>
